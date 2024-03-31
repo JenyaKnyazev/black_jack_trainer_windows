@@ -44,7 +44,7 @@ int amount_cards_in_deck(){
     return sum;
 }
 void init_player(char *p,int max){
-    int n=rand()%5+1;
+    int n=rand()%4+2;
     int i;
     for(i=0;i<n&&i<max;i++){
         do{
@@ -74,7 +74,7 @@ void play(){
     rounds2=rounds;
     while(rounds2--){
         max=amount_cards_in_deck();
-        if(max/players_count<2)
+        if((max/players_count)<2)
             break;;
         one_round(max);
     }
@@ -90,8 +90,10 @@ void play(){
     printf("again = 0 other exit: ");
     scanf("%d",&sum);
     clean_screen();
-    if(!sum)
+    if(!sum){
+        input();
         goto label;
+    }
 }
 int main(){
     int i;
